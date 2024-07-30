@@ -4,19 +4,19 @@ import matplotlib.image as mpimg
 
 def plot_data(data):
 
-    # 假设有100人，每人两列数据，总共200列
+    # Assuming 100 pedestrians and two columns of data per pedestrian, for a total of 200 columns
     num_pedestrians = 100
     num_steps = len(data)
-    # 分别为每个行人创建x和y坐标的列表
+    # Create separate lists of x and y coordinates for each pedestrian
     x = [[] for _ in range(num_pedestrians)]
     y = [[] for _ in range(num_pedestrians)]
 
     for i in range(num_steps):
         for j in range(num_pedestrians):
-            x[j].append(data[i][2*j])    # 2*j是因为每个行人有两列数据，x坐标
-            y[j].append(data[i][2*j+1])  # 2*j+1是y坐标
+            x[j].append(data[i][2*j])    # 2*j because there are two columns of data for each pedestrian, the x-coordinate
+            y[j].append(data[i][2*j+1])  # 2*j+1 y coordinate
 
-    # 绘制所有行人的轨迹
+    # Plotting the trajectory of all pedestrians
     img = mpimg.imread('MI.png')
     plt.figure(figsize=(10, 8))
     for j in range(num_pedestrians):
@@ -32,5 +32,5 @@ def plot_data(data):
     '''
 
 data = np.loadtxt('pedestrians_positions_MI.csv')
-print(data.shape)  # data.shape: 步数（可以是1）x（人数*2）
+print(data.shape)  # data.shape: Number of steps (can be 1) x (number of pedestrians * 2)
 plot_data(data)
